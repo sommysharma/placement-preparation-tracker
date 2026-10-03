@@ -1,0 +1,218 @@
+.dashboard-page {
+  min-height: 100vh;
+  padding: 30px;
+  background: #050b14;
+  color: #eaf9ff;
+}
+
+.dashboard-header {
+  margin-bottom: 25px;
+}
+
+.dashboard-header h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+}
+
+.dashboard-header p {
+  margin: 0;
+  color: #7e96a8;
+  font-size: 14px;
+}
+
+/* Statistics */
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.dashboard-stat-card {
+  padding: 20px;
+  background: #08121d;
+  border: 1px solid #173548;
+  border-radius: 10px;
+}
+
+.dashboard-stat-card span {
+  display: block;
+  margin-bottom: 10px;
+  color: #7e96a8;
+  font-size: 13px;
+}
+
+.dashboard-stat-card strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #5ddcff;
+  font-size: 28px;
+}
+
+.dashboard-stat-card small {
+  color: #60798b;
+  font-size: 11px;
+}
+
+/* Main grid */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.dashboard-card {
+  padding: 22px;
+  background: #08121d;
+  border: 1px solid #173548;
+  border-radius: 10px;
+}
+
+.dashboard-card-header {
+  margin-bottom: 25px;
+}
+
+.dashboard-card-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+/* Preparation */
+
+.dashboard-progress-item {
+  margin-bottom: 22px;
+}
+
+.dashboard-progress-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.dashboard-progress-header span {
+  color: #eaf9ff;
+  font-size: 13px;
+}
+
+.dashboard-progress-header strong {
+  color: #5ddcff;
+  font-size: 12px;
+}
+
+.dashboard-progress-bar {
+  width: 100%;
+  height: 7px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #173548;
+}
+
+.dashboard-progress-fill {
+  height: 100%;
+  border-radius: 10px;
+  background: #5ddcff;
+}
+
+.dashboard-total-practice {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 18px;
+  border-top: 1px solid #173548;
+}
+
+.dashboard-total-practice span {
+  color: #7e96a8;
+  font-size: 13px;
+}
+
+.dashboard-total-practice strong {
+  color: #5ddcff;
+  font-size: 18px;
+}
+
+/* Placement */
+
+.placement-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 0;
+  border-bottom: 1px solid #173548;
+}
+
+.placement-stat span {
+  color: #7e96a8;
+  font-size: 13px;
+}
+
+.placement-stat strong {
+  color: #eaf9ff;
+  font-size: 17px;
+}
+
+.placement-stat .selected-count {
+  color: #5ddcff;
+}
+
+.placement-stat .rejected-count {
+  color: #ff7b7b;
+}
+
+.placement-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+}
+
+.placement-total span {
+  color: #7e96a8;
+  font-size: 13px;
+}
+
+.placement-total strong {
+  color: #5ddcff;
+  font-size: 18px;
+}
+
+/* Message */
+
+.dashboard-message {
+  margin-bottom: 20px;
+}
+
+.dashboard-message h2 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.dashboard-message p {
+  margin: 0;
+  color: #7e96a8;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-page {
+    padding: 20px 15px;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+}

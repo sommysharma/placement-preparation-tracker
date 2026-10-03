@@ -1,0 +1,702 @@
+[
+  {
+    "id": 1,
+    "category": "SELECT, WHERE, ORDER BY",
+    "difficulty": "Easy",
+    "question": "Display all employees.",
+    "concept": "SELECT"
+  },
+  {
+    "id": 2,
+    "category": "SELECT, WHERE, ORDER BY",
+    "difficulty": "Easy",
+    "question": "Display employee names and salaries.",
+    "concept": "SELECT"
+  },
+  {
+    "id": 3,
+    "category": "SELECT, WHERE, ORDER BY",
+    "difficulty": "Easy",
+    "question": "Find employees whose salary is greater than 50,000.",
+    "concept": "WHERE"
+  },
+  {
+    "id": 4,
+    "category": "SELECT, WHERE, ORDER BY",
+    "difficulty": "Easy",
+    "question": "Find employees who work in department 10.",
+    "concept": "WHERE"
+  },
+  {
+    "id": 5,
+    "category": "SELECT, WHERE, ORDER BY",
+    "difficulty": "Easy",
+    "question": "Display employees whose salary is between 40,000 and 70,000.",
+    "concept": "BETWEEN"
+  },
+  {
+    "id": 6,
+    "category": "SELECT, WHERE, ORDER BY",
+    "difficulty": "Easy",
+    "question": "Find employees whose name starts with 'A'.",
+    "concept": "LIKE"
+  },
+  {
+    "id": 7,
+    "category": "SELECT, WHERE, ORDER BY",
+    "difficulty": "Medium",
+    "question": "Find employees whose salary is greater than 50,000 and department is 10.",
+    "concept": "WHERE with AND"
+  },
+  {
+    "id": 8,
+    "category": "SELECT, WHERE, ORDER BY",
+    "difficulty": "Medium",
+    "question": "Display employees in descending order of salary.",
+    "concept": "ORDER BY"
+  },
+  {
+    "id": 9,
+    "category": "SELECT, WHERE, ORDER BY",
+    "difficulty": "Medium",
+    "question": "Display the top 5 highest-paid employees.",
+    "concept": "ORDER BY and LIMIT"
+  },
+  {
+    "id": 10,
+    "category": "SELECT, WHERE, ORDER BY",
+    "difficulty": "Hard",
+    "question": "Find employees whose salary is greater than 50,000 but who do not belong to department 10.",
+    "concept": "WHERE with AND/NOT"
+  },
+  {
+    "id": 11,
+    "category": "Aggregate Functions",
+    "difficulty": "Easy",
+    "question": "Find the total number of employees.",
+    "concept": "COUNT"
+  },
+  {
+    "id": 12,
+    "category": "Aggregate Functions",
+    "difficulty": "Easy",
+    "question": "Find the highest salary.",
+    "concept": "MAX"
+  },
+  {
+    "id": 13,
+    "category": "Aggregate Functions",
+    "difficulty": "Easy",
+    "question": "Find the lowest salary.",
+    "concept": "MIN"
+  },
+  {
+    "id": 14,
+    "category": "Aggregate Functions",
+    "difficulty": "Easy",
+    "question": "Find the average salary.",
+    "concept": "AVG"
+  },
+  {
+    "id": 15,
+    "category": "Aggregate Functions",
+    "difficulty": "Easy",
+    "question": "Find the total salary paid to all employees.",
+    "concept": "SUM"
+  },
+  {
+    "id": 16,
+    "category": "Aggregate Functions",
+    "difficulty": "Medium",
+    "question": "Find the number of employees in department 10.",
+    "concept": "COUNT with WHERE"
+  },
+  {
+    "id": 17,
+    "category": "Aggregate Functions",
+    "difficulty": "Medium",
+    "question": "Find the average salary of employees in department 20.",
+    "concept": "AVG with WHERE"
+  },
+  {
+    "id": 18,
+    "category": "Aggregate Functions",
+    "difficulty": "Medium",
+    "question": "Find the maximum salary in each department.",
+    "concept": "MAX with GROUP BY"
+  },
+  {
+    "id": 19,
+    "category": "Aggregate Functions",
+    "difficulty": "Hard",
+    "question": "Find departments where the average salary is greater than 60,000.",
+    "concept": "AVG with GROUP BY/HAVING"
+  },
+  {
+    "id": 20,
+    "category": "Aggregate Functions",
+    "difficulty": "Hard",
+    "question": "Find departments having more than 5 employees.",
+    "concept": "COUNT with GROUP BY/HAVING"
+  },
+  {
+    "id": 21,
+    "category": "GROUP BY + HAVING",
+    "difficulty": "Easy",
+    "question": "Find the number of employees in each department.",
+    "concept": "GROUP BY and COUNT"
+  },
+  {
+    "id": 22,
+    "category": "GROUP BY + HAVING",
+    "difficulty": "Easy",
+    "question": "Find the average salary of each department.",
+    "concept": "GROUP BY and AVG"
+  },
+  {
+    "id": 23,
+    "category": "GROUP BY + HAVING",
+    "difficulty": "Easy",
+    "question": "Find the maximum salary in each department.",
+    "concept": "GROUP BY and MAX"
+  },
+  {
+    "id": 24,
+    "category": "GROUP BY + HAVING",
+    "difficulty": "Easy",
+    "question": "Find the minimum salary in each department.",
+    "concept": "GROUP BY and MIN"
+  },
+  {
+    "id": 25,
+    "category": "GROUP BY + HAVING",
+    "difficulty": "Medium",
+    "question": "Find departments where the maximum salary is greater than 80,000.",
+    "concept": "HAVING with MAX"
+  },
+  {
+    "id": 26,
+    "category": "GROUP BY + HAVING",
+    "difficulty": "Medium",
+    "question": "Find departments where the average salary is less than 60,000.",
+    "concept": "HAVING with AVG"
+  },
+  {
+    "id": 27,
+    "category": "GROUP BY + HAVING",
+    "difficulty": "Medium",
+    "question": "Find departments having at least 3 employees.",
+    "concept": "HAVING with COUNT"
+  },
+  {
+    "id": 28,
+    "category": "GROUP BY + HAVING",
+    "difficulty": "Medium",
+    "question": "Find the total salary paid by each department.",
+    "concept": "GROUP BY and SUM"
+  },
+  {
+    "id": 29,
+    "category": "GROUP BY + HAVING",
+    "difficulty": "Hard",
+    "question": "Find the department with the highest average salary.",
+    "concept": "GROUP BY and ORDER BY"
+  },
+  {
+    "id": 30,
+    "category": "GROUP BY + HAVING",
+    "difficulty": "Hard",
+    "question": "Find the department with the second-highest average salary.",
+    "concept": "GROUP BY with ranking/subquery"
+  },
+  {
+    "id": 31,
+    "category": "JOINS",
+    "difficulty": "Easy",
+    "question": "Display employee name and department name.",
+    "concept": "INNER JOIN"
+  },
+  {
+    "id": 32,
+    "category": "JOINS",
+    "difficulty": "Easy",
+    "question": "Display employee name, salary and department name.",
+    "concept": "INNER JOIN"
+  },
+  {
+    "id": 33,
+    "category": "JOINS",
+    "difficulty": "Easy",
+    "question": "Find all employees working in the IT department.",
+    "concept": "JOIN with WHERE"
+  },
+  {
+    "id": 34,
+    "category": "JOINS",
+    "difficulty": "Easy",
+    "question": "Find all employees working in the HR department.",
+    "concept": "JOIN with WHERE"
+  },
+  {
+    "id": 35,
+    "category": "JOINS",
+    "difficulty": "Easy",
+    "question": "Display all departments and their employees, including departments with no employees.",
+    "concept": "LEFT JOIN"
+  },
+  {
+    "id": 36,
+    "category": "JOINS",
+    "difficulty": "Medium",
+    "question": "Find employees who do not belong to any department.",
+    "concept": "LEFT JOIN / Anti Join"
+  },
+  {
+    "id": 37,
+    "category": "JOINS",
+    "difficulty": "Medium",
+    "question": "Find departments that have no employees.",
+    "concept": "LEFT JOIN / Anti Join"
+  },
+  {
+    "id": 38,
+    "category": "JOINS",
+    "difficulty": "Medium",
+    "question": "Find the number of employees in each department using JOIN.",
+    "concept": "JOIN with GROUP BY"
+  },
+  {
+    "id": 39,
+    "category": "JOINS",
+    "difficulty": "Medium",
+    "question": "Find the average salary of each department using JOIN.",
+    "concept": "JOIN with GROUP BY"
+  },
+  {
+    "id": 40,
+    "category": "JOINS",
+    "difficulty": "Medium",
+    "question": "Find employees earning more than the average salary of their department.",
+    "concept": "JOIN with correlated comparison"
+  },
+  {
+    "id": 41,
+    "category": "JOINS",
+    "difficulty": "Hard",
+    "question": "Find the highest-paid employee in each department.",
+    "concept": "JOIN with subquery/ranking"
+  },
+  {
+    "id": 42,
+    "category": "JOINS",
+    "difficulty": "Hard",
+    "question": "Find the second-highest-paid employee in each department.",
+    "concept": "JOIN with ranking/subquery"
+  },
+  {
+    "id": 43,
+    "category": "JOINS",
+    "difficulty": "Hard",
+    "question": "Find employees whose salary is higher than their department's average salary.",
+    "concept": "JOIN with correlated comparison"
+  },
+  {
+    "id": 44,
+    "category": "JOINS",
+    "difficulty": "Hard",
+    "question": "Find departments where the highest salary is greater than 100,000.",
+    "concept": "JOIN with GROUP BY/HAVING"
+  },
+  {
+    "id": 45,
+    "category": "JOINS",
+    "difficulty": "Hard",
+    "question": "Find employees who earn more than their manager.",
+    "concept": "SELF JOIN"
+  },
+  {
+    "id": 46,
+    "category": "SUBQUERIES",
+    "difficulty": "Easy",
+    "question": "Find the second-highest salary.",
+    "concept": "Subquery"
+  },
+  {
+    "id": 47,
+    "category": "SUBQUERIES",
+    "difficulty": "Easy",
+    "question": "Find employees earning the highest salary.",
+    "concept": "Subquery with MAX"
+  },
+  {
+    "id": 48,
+    "category": "SUBQUERIES",
+    "difficulty": "Easy",
+    "question": "Find employees earning more than the average salary.",
+    "concept": "Subquery with AVG"
+  },
+  {
+    "id": 49,
+    "category": "SUBQUERIES",
+    "difficulty": "Easy",
+    "question": "Find employees earning less than the average salary.",
+    "concept": "Subquery with AVG"
+  },
+  {
+    "id": 50,
+    "category": "SUBQUERIES",
+    "difficulty": "Medium",
+    "question": "Find the third-highest salary.",
+    "concept": "Subquery"
+  },
+  {
+    "id": 51,
+    "category": "SUBQUERIES",
+    "difficulty": "Medium",
+    "question": "Find employees who earn more than the highest salary in department 10.",
+    "concept": "Subquery with MAX"
+  },
+  {
+    "id": 52,
+    "category": "SUBQUERIES",
+    "difficulty": "Medium",
+    "question": "Find employees working in the same department as employee 'Rahul'.",
+    "concept": "Subquery"
+  },
+  {
+    "id": 53,
+    "category": "SUBQUERIES",
+    "difficulty": "Medium",
+    "question": "Find employees whose salary is greater than the average salary of their department.",
+    "concept": "Correlated subquery"
+  },
+  {
+    "id": 54,
+    "category": "SUBQUERIES",
+    "difficulty": "Hard",
+    "question": "Find the highest-paid employee in each department using a subquery.",
+    "concept": "Correlated subquery"
+  },
+  {
+    "id": 55,
+    "category": "SUBQUERIES",
+    "difficulty": "Hard",
+    "question": "Find employees who have the same salary as at least one other employee.",
+    "concept": "Subquery / duplicate detection"
+  },
+  {
+    "id": 56,
+    "category": "JOINS + SELF JOIN",
+    "difficulty": "Easy",
+    "question": "Display employee name and manager name.",
+    "concept": "SELF JOIN"
+  },
+  {
+    "id": 57,
+    "category": "JOINS + SELF JOIN",
+    "difficulty": "Easy",
+    "question": "Find employees who have a manager.",
+    "concept": "SELF JOIN"
+  },
+  {
+    "id": 58,
+    "category": "JOINS + SELF JOIN",
+    "difficulty": "Easy",
+    "question": "Find employees who do not have a manager.",
+    "concept": "WHERE manager_id IS NULL"
+  },
+  {
+    "id": 59,
+    "category": "JOINS + SELF JOIN",
+    "difficulty": "Medium",
+    "question": "Find employees whose salary is greater than their manager's salary.",
+    "concept": "SELF JOIN"
+  },
+  {
+    "id": 60,
+    "category": "JOINS + SELF JOIN",
+    "difficulty": "Medium",
+    "question": "Display employee name, manager name, employee salary and manager salary.",
+    "concept": "SELF JOIN"
+  },
+  {
+    "id": 61,
+    "category": "JOINS + SELF JOIN",
+    "difficulty": "Medium",
+    "question": "Find managers who manage at least one employee.",
+    "concept": "SELF JOIN / DISTINCT"
+  },
+  {
+    "id": 62,
+    "category": "JOINS + SELF JOIN",
+    "difficulty": "Medium",
+    "question": "Find the number of employees reporting to each manager.",
+    "concept": "SELF JOIN with GROUP BY"
+  },
+  {
+    "id": 63,
+    "category": "JOINS + SELF JOIN",
+    "difficulty": "Hard",
+    "question": "Find employees who earn more than their manager and belong to the same department as their manager.",
+    "concept": "SELF JOIN with conditions"
+  },
+  {
+    "id": 64,
+    "category": "JOINS + SELF JOIN",
+    "difficulty": "Hard",
+    "question": "Find the manager with the highest number of direct reports.",
+    "concept": "SELF JOIN with GROUP BY"
+  },
+  {
+    "id": 65,
+    "category": "JOINS + SELF JOIN",
+    "difficulty": "Hard",
+    "question": "Find employees whose manager earns more than the average salary of all employees.",
+    "concept": "SELF JOIN with subquery"
+  },
+  {
+    "id": 66,
+    "category": "WINDOW FUNCTIONS",
+    "difficulty": "Easy",
+    "question": "Assign a row number to every employee ordered by salary.",
+    "concept": "ROW_NUMBER"
+  },
+  {
+    "id": 67,
+    "category": "WINDOW FUNCTIONS",
+    "difficulty": "Easy",
+    "question": "Rank employees based on salary.",
+    "concept": "RANK"
+  },
+  {
+    "id": 68,
+    "category": "WINDOW FUNCTIONS",
+    "difficulty": "Easy",
+    "question": "Give dense rank to employees based on salary.",
+    "concept": "DENSE_RANK"
+  },
+  {
+    "id": 69,
+    "category": "WINDOW FUNCTIONS",
+    "difficulty": "Easy",
+    "question": "Find the highest-paid employee in each department using ROW_NUMBER().",
+    "concept": "ROW_NUMBER with PARTITION BY"
+  },
+  {
+    "id": 70,
+    "category": "WINDOW FUNCTIONS",
+    "difficulty": "Easy",
+    "question": "Find the second-highest salary in each department.",
+    "concept": "ROW_NUMBER/RANK with PARTITION BY"
+  },
+  {
+    "id": 71,
+    "category": "WINDOW FUNCTIONS",
+    "difficulty": "Medium",
+    "question": "Find the top 3 highest-paid employees from each department.",
+    "concept": "ROW_NUMBER with PARTITION BY"
+  },
+  {
+    "id": 72,
+    "category": "WINDOW FUNCTIONS",
+    "difficulty": "Medium",
+    "question": "Find the top 2 salaries from each department.",
+    "concept": "DENSE_RANK with PARTITION BY"
+  },
+  {
+    "id": 73,
+    "category": "WINDOW FUNCTIONS",
+    "difficulty": "Medium",
+    "question": "Find employees whose salary is higher than the previous employee's salary.",
+    "concept": "LAG"
+  },
+  {
+    "id": 74,
+    "category": "WINDOW FUNCTIONS",
+    "difficulty": "Medium",
+    "question": "Display each employee's salary along with the previous employee's salary.",
+    "concept": "LAG"
+  },
+  {
+    "id": 75,
+    "category": "WINDOW FUNCTIONS",
+    "difficulty": "Medium",
+    "question": "Display each employee's salary along with the next employee's salary.",
+    "concept": "LEAD"
+  },
+  {
+    "id": 76,
+    "category": "WINDOW FUNCTIONS",
+    "difficulty": "Hard",
+    "question": "Find the difference between an employee's salary and the previous employee's salary.",
+    "concept": "LAG with arithmetic"
+  },
+  {
+    "id": 77,
+    "category": "WINDOW FUNCTIONS",
+    "difficulty": "Hard",
+    "question": "Calculate cumulative salary department-wise.",
+    "concept": "SUM OVER with PARTITION BY"
+  },
+  {
+    "id": 78,
+    "category": "WINDOW FUNCTIONS",
+    "difficulty": "Hard",
+    "question": "Calculate the average salary of employees department-wise while keeping every employee row.",
+    "concept": "AVG OVER with PARTITION BY"
+  },
+  {
+    "id": 79,
+    "category": "WINDOW FUNCTIONS",
+    "difficulty": "Hard",
+    "question": "Find employees whose salary is greater than the department average using a window function.",
+    "concept": "AVG OVER with PARTITION BY"
+  },
+  {
+    "id": 80,
+    "category": "WINDOW FUNCTIONS",
+    "difficulty": "Hard",
+    "question": "Find the highest, second-highest and third-highest salary employee from each department.",
+    "concept": "DENSE_RANK/ROW_NUMBER with PARTITION BY"
+  },
+  {
+    "id": 81,
+    "category": "Customers + Orders",
+    "difficulty": "Easy",
+    "question": "Find customers who have placed at least one order.",
+    "concept": "INNER JOIN / EXISTS"
+  },
+  {
+    "id": 82,
+    "category": "Customers + Orders",
+    "difficulty": "Easy",
+    "question": "Find customers who have never placed an order.",
+    "concept": "LEFT JOIN / NOT EXISTS"
+  },
+  {
+    "id": 83,
+    "category": "Customers + Orders",
+    "difficulty": "Easy",
+    "question": "Find the total number of orders.",
+    "concept": "COUNT"
+  },
+  {
+    "id": 84,
+    "category": "Customers + Orders",
+    "difficulty": "Easy",
+    "question": "Find the total amount spent by each customer.",
+    "concept": "JOIN with GROUP BY and SUM"
+  },
+  {
+    "id": 85,
+    "category": "Customers + Orders",
+    "difficulty": "Medium",
+    "question": "Find customers who have placed more than 3 orders.",
+    "concept": "GROUP BY and HAVING"
+  },
+  {
+    "id": 86,
+    "category": "Customers + Orders",
+    "difficulty": "Medium",
+    "question": "Find the customer who has spent the most money.",
+    "concept": "GROUP BY and ORDER BY"
+  },
+  {
+    "id": 87,
+    "category": "Customers + Orders",
+    "difficulty": "Medium",
+    "question": "Find the average order amount for each customer.",
+    "concept": "GROUP BY and AVG"
+  },
+  {
+    "id": 88,
+    "category": "Customers + Orders",
+    "difficulty": "Hard",
+    "question": "Find the first order date of each customer.",
+    "concept": "MIN with GROUP BY"
+  },
+  {
+    "id": 89,
+    "category": "Customers + Orders",
+    "difficulty": "Hard",
+    "question": "Find the latest order of each customer.",
+    "concept": "MAX / ranking"
+  },
+  {
+    "id": 90,
+    "category": "Customers + Orders",
+    "difficulty": "Hard",
+    "question": "Find customers whose latest order amount is greater than their average order amount.",
+    "concept": "Window/subquery"
+  },
+  {
+    "id": 91,
+    "category": "Date + Real Business Questions",
+    "difficulty": "Medium",
+    "question": "Find employees who joined in the year 2024.",
+    "concept": "Date functions"
+  },
+  {
+    "id": 92,
+    "category": "Date + Real Business Questions",
+    "difficulty": "Medium",
+    "question": "Find employees who joined in the last 6 months.",
+    "concept": "Date functions"
+  },
+  {
+    "id": 93,
+    "category": "Date + Real Business Questions",
+    "difficulty": "Medium",
+    "question": "Find the number of orders placed in each month.",
+    "concept": "DATE functions with GROUP BY"
+  },
+  {
+    "id": 94,
+    "category": "Date + Real Business Questions",
+    "difficulty": "Hard",
+    "question": "Find customers who placed their first order in 2025.",
+    "concept": "MIN with date filtering"
+  },
+  {
+    "id": 95,
+    "category": "Date + Real Business Questions",
+    "difficulty": "Hard",
+    "question": "Find customers who placed orders in both January and February.",
+    "concept": "Conditional aggregation"
+  },
+  {
+    "id": 96,
+    "category": "Advanced Interview Problems",
+    "difficulty": "Hard",
+    "question": "Find the second-highest salary without using LIMIT, TOP, or window functions.",
+    "concept": "Subquery / MAX"
+  },
+  {
+    "id": 97,
+    "category": "Advanced Interview Problems",
+    "difficulty": "Hard",
+    "question": "Find employees who have the same salary as another employee.",
+    "concept": "GROUP BY / duplicate detection"
+  },
+  {
+    "id": 98,
+    "category": "Advanced Interview Problems",
+    "difficulty": "Hard",
+    "question": "Find the first-ever order of every customer and the number of products in that first order.",
+    "concept": "First record + JOIN + aggregation"
+  },
+  {
+    "id": 99,
+    "category": "Advanced Interview Problems",
+    "difficulty": "Hard",
+    "question": "Find customers who placed an order but did not place another order within the next 30 days.",
+    "concept": "Date comparison / NOT EXISTS"
+  },
+  {
+    "id": 100,
+    "category": "Advanced Interview Problems",
+    "difficulty": "Hard",
+    "question": "Find the top 3 customers in each city based on total amount spent.",
+    "concept": "GROUP BY + window ranking"
+  }
+]

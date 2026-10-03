@@ -1,0 +1,110 @@
+.resume-page {
+  min-height: calc(100vh - 70px);
+  padding: 40px;
+  background: #050b14;
+  color: #eaf9ff;
+}
+
+.resume-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.resume-container h1 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.resume-container > p {
+  color: #7e96a8;
+  margin-bottom: 30px;
+}
+
+.resume-upload-card {
+  padding: 30px;
+  background: #08121d;
+  border: 1px solid #173548;
+  border-radius: 16px;
+}
+
+.resume-upload-card input[type="file"] {
+  width: 100%;
+  padding: 14px;
+  background: #0c1b28;
+  color: #eaf9ff;
+  border: 1px solid #173548;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.selected-file {
+  color: #5ddcff;
+  margin-top: 15px;
+}
+
+.resume-upload-card button {
+  margin-top: 20px;
+  padding: 13px 24px;
+  background: #5ddcff;
+  color: #050b14;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.resume-upload-card button:hover {
+  background: #35c7ff;
+}
+
+.resume-upload-card button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.resume-message {
+  margin-top: 18px;
+  color: #5ddcff;
+}
+
+.resume-text-card {
+  margin-top: 25px;
+  padding: 30px;
+  background: #08121d;
+  border: 1px solid #173548;
+  border-radius: 16px;
+}
+
+.resume-text-card h2 {
+  margin-bottom: 20px;
+}
+
+.resume-text-card pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: #c9dce5;
+  line-height: 1.6;
+  font-family: inherit;
+}
+.resume-upload-card button + button {
+  margin-left: 12px;
+}
+
+.resume-analysis-card {
+  margin-top: 25px;
+  padding: 30px;
+  background: #08121d;
+  border: 1px solid #173548;
+  border-radius: 16px;
+}
+
+.resume-analysis-card h2 {
+  margin-bottom: 20px;
+  color: #5ddcff;
+}
+
+.resume-analysis {
+  white-space: pre-wrap;
+  color: #c9dce5;
+  line-height: 1.7;
+}

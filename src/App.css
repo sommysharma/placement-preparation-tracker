@@ -1,0 +1,37 @@
+#root {
+  min-height: 100vh;
+  background: #050b14;
+}
+
+.app-layout {
+  min-height: 100vh;
+  background: #050b14;
+}
+
+.main-content {
+  min-height: calc(100vh - 64px);
+  margin-left: 240px;
+  padding: 30px;
+  padding-top: 94px;
+  background: #050b14;
+  color: #eaf9ff;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: #eaf9ff;
+}
+
+p {
+  color: #7e96a8;
+}
+
+@media (max-width: 800px) {
+  .main-content {
+    margin-left: 0;
+    padding: 20px;
+    padding-top: 84px;
+  }
+}
