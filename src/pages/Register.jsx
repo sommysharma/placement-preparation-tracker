@@ -1,7 +1,7 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Auth.css";
+
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -17,33 +17,32 @@ function Register() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/auth/register",
+        `${import.meta.env.VITE_API_URL}/api/auth/register`,
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             name,
             email,
-            password
-          })
+            password,
+          }),
         }
       );
 
       const data = await response.json();
 
       if (!response.ok) {
-        alert(data.message);
+        alert(data.message || "Registration failed");
         return;
       }
 
-      alert(data.message);
+      alert(data.message || "Registration successful");
 
       setName("");
       setEmail("");
       setPassword("");
-
     } catch (error) {
       console.log(error);
       alert("Server error");
@@ -53,15 +52,11 @@ function Register() {
   return (
     <div className="auth-container">
       <div className="auth-card">
-
         <h1>Create Account</h1>
 
-        <p>
-          Start tracking your placement preparation.
-        </p>
+        <p>Start tracking your placement preparation.</p>
 
         <form onSubmit={handleSubmit}>
-
           <div className="form-group">
             <label>Name</label>
 
@@ -95,21 +90,15 @@ function Register() {
             />
           </div>
 
-          <button type="submit">
-            Register
-          </button>
-
+          <button type="submit">Register</button>
         </form>
 
         <p className="auth-footer">
-          Already have an account?{" "}
-          <Link to="/login">Login</Link>
+          Already have an account? <Link to="/login">Login</Link>
         </p>
-
       </div>
     </div>
   );
 }
 
 export default Register;
-

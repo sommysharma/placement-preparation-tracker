@@ -32,9 +32,9 @@ function Companies() {
 
   async function fetchCompanies() {
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/companies/${user.id}`
-      );
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/api/companies/${user.id}`
+  );
 
       const data = await response.json();
 
@@ -127,11 +127,10 @@ function Companies() {
       return;
     }
 
-    try {
-      const url = editingCompany
-        ? `http://localhost:5000/api/companies/${editingCompany.id}`
-        : "http://localhost:5000/api/companies";
-
+  try {
+  const url = editingCompany
+    ? `${import.meta.env.VITE_API_URL}/api/companies/${editingCompany.id}`
+    : `${import.meta.env.VITE_API_URL}/api/companies`;
       const method = editingCompany
         ? "PUT"
         : "POST";
@@ -174,14 +173,13 @@ function Companies() {
     if (!confirmDelete) {
       return;
     }
-
-    try {
-      const response = await fetch(
-        `http://localhost:5000/api/companies/${id}`,
-        {
-          method: "DELETE"
-        }
-      );
+try {
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/api/companies/${id}`,
+    {
+      method: "DELETE"
+    }
+  );
 
       const data = await response.json();
 

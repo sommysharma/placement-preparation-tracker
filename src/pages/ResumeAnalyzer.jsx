@@ -3,189 +3,228 @@ import "./ResumeAnalyzer.css";
 
 function ResumeAnalyzer() {
   const [file, setFile] = useState(null);
-  const [resumeText, setResumeText] = useState("");
-  const [analysis, setAnalysis] = useState("");
+  const [analysis, setAnalysis] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [analyzing, setAnalyzing] = useState(false);
-  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
-  function handleFileChange(event) {
-    const selectedFile = event.target.files[0];
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
 
     if (!selectedFile) {
       return;
     }
 
     if (selectedFile.type !== "application/pdf") {
-      setMessage("Only PDF files are allowed");
+      setError("Please upload a PDF file.");
       setFile(null);
       return;
     }
 
     setFile(selectedFile);
-    setResumeText("");
-    setAnalysis("");
-    setMessage("");
-  }
+    setError("");
+    setAnalysis(null);
+  };
 
-  async function uploadResume() {
+  const handleUpload = async () => {
     if (!file) {
-      setMessage("Please select a resume");
+      setError("Please select a PDF resume first.");
       return;
     }
 
+    setLoading(true);
+    setError("");
+    setAnalysis(null);
+
     try {
-      setLoading(true);
-      setMessage("");
-
       const formData = new FormData();
-
       formData.append("resume", file);
 
-      const response = await fetch(
-        "http://localhost:5000/api/resume/upload",
+      const uploadResponse = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/resume/upload`,
         {
           method: "POST",
-          body: formData
+          body: formData,
         }
       );
 
-      const data = await response.json();
+      const uploadData = await uploadResponse.json();
 
-      if (!response.ok) {
-        setMessage(data.message || "Upload failed");
-        return;
+      console.log("Upload Response:", uploadData);
+
+      if (!uploadResponse.ok) {
+        throw new Error(
+          uploadData.message || "Resume upload failed."
+        );
       }
 
-      setResumeText(data.text || "");
-      setMessage("Resume uploaded successfully");
-
-    } catch (error) {
-      console.log(error);
-      setMessage("Server error");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  async function analyzeResume() {
-    if (!resumeText) {
-      setMessage("Upload your resume first");
-      return;
-    }
-
-    try {
-      setAnalyzing(true);
-      setMessage("");
-
-      const response = await fetch(
-        "http://localhost:5000/api/resume/analyze",
+      const analyzeResponse = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/resume/analyze`,
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            text: resumeText
-          })
+            text: uploadData.text,
+          }),
         }
       );
 
-      const data = await response.json();
+      const analyzeData = await analyzeResponse.json();
 
-      if (!response.ok) {
-        setMessage(
-          data.message || "Resume analysis failed"
+      console.log("Analysis Response:", analyzeData);
+
+      if (!analyzeResponse.ok) {
+        throw new Error(
+          analyzeData.message || "Resume analysis failed."
         );
-        return;
       }
 
-      setAnalysis(data.analysis || "");
-      setMessage("Resume analysis completed");
-
-    } catch (error) {
-      console.log(error);
-      setMessage("Server error");
+      setAnalysis(analyzeData.analysis);
+    } catch (err) {
+      console.error("Resume analysis error:", err);
+      setError(err.message || "Something went wrong.");
     } finally {
-      setAnalyzing(false);
+      setLoading(false);
     }
-  }
+  };
+
+  const renderList = (items) => {
+    if (!Array.isArray(items)) {
+      return <p>{items || "Not available"}</p>;
+    }
+
+    return (
+      <ul>
+        {items.map((item, index) => (
+          <li key={index}>{String(item)}</li>
+        ))}
+      </ul>
+    );
+  };
 
   return (
-    <div className="resume-page">
-      <div className="resume-container">
+    <div className="resume-analyzer">
 
+      <div className="resume-header">
         <h1>AI Resume Analyzer</h1>
-
         <p>
-          Upload your resume and analyze it using AI.
+          Upload your resume and get an AI-powered analysis.
         </p>
+      </div>
 
-        <div className="resume-upload-card">
+      <div className="upload-card">
+        <h2>Upload Resume</h2>
 
-          <input
-            type="file"
-            accept=".pdf"
-            onChange={handleFileChange}
-          />
+        <input
+          type="file"
+          accept=".pdf,application/pdf"
+          onChange={handleFileChange}
+        />
 
-          {file && (
-            <p className="selected-file">
-              Selected: {file.name}
-            </p>
-          )}
-
-          <button
-            onClick={uploadResume}
-            disabled={loading}
-          >
-            {loading
-              ? "Uploading..."
-              : "Upload Resume"}
-          </button>
-
-          {resumeText && (
-            <button
-              onClick={analyzeResume}
-              disabled={analyzing}
-            >
-              {analyzing
-                ? "Analyzing with Gemini..."
-                : "Analyze Resume"}
-            </button>
-          )}
-
-          {message && (
-            <p className="resume-message">
-              {message}
-            </p>
-          )}
-
-        </div>
-
-        {resumeText && (
-          <div className="resume-text-card">
-
-            <h2>Extracted Resume Text</h2>
-
-            <pre>{resumeText}</pre>
-
-          </div>
+        {file && (
+          <p className="selected-file">
+            Selected: {file.name}
+          </p>
         )}
 
-        {analysis && (
-          <div className="resume-analysis-card">
+        <button
+          onClick={handleUpload}
+          disabled={loading || !file}
+        >
+          {loading ? "Analyzing Resume..." : "Analyze Resume"}
+        </button>
 
-            <h2>AI Resume Analysis</h2>
+        {error && (
+          <p className="error-message">
+            {error}
+          </p>
+        )}
+      </div>
 
-            <div className="resume-analysis">
-              {analysis}
+      {analysis && (
+        <div className="analysis-container">
+
+          <div className="analysis-title">
+            <h2>Resume Analysis</h2>
+          </div>
+
+          <div className="score-card">
+            <h3>ATS Score</h3>
+
+            <div className="score">
+              {analysis.ats_score}
             </div>
 
+            <p>out of 100</p>
           </div>
-        )}
 
-      </div>
+          <div className="analysis-card">
+            <h3>Summary</h3>
+            <p>{analysis.summary}</p>
+          </div>
+
+          <div className="analysis-card">
+            <h3>Technical Skills</h3>
+            {renderList(analysis.technical_skills)}
+          </div>
+
+          <div className="analysis-card">
+            <h3>Recommended Skills</h3>
+            {renderList(analysis.recommended_skills)}
+          </div>
+
+          <div className="analysis-card">
+            <h3>Projects</h3>
+
+            {Array.isArray(analysis.projects) &&
+              analysis.projects.map((project, index) => (
+                <div
+                  className="project-analysis"
+                  key={index}
+                >
+                  <h4>{project.name}</h4>
+
+                  <p>
+                    <strong>Strengths:</strong>{" "}
+                    {project.strengths}
+                  </p>
+
+                  <p>
+                    <strong>Improvements:</strong>{" "}
+                    {project.improvements}
+                  </p>
+                </div>
+              ))}
+          </div>
+
+          <div className="analysis-card">
+            <h3>Education</h3>
+            <p>{analysis.education}</p>
+          </div>
+
+          <div className="analysis-card">
+            <h3>Strengths</h3>
+            {renderList(analysis.strengths)}
+          </div>
+
+          <div className="analysis-card">
+            <h3>Weak Areas</h3>
+            {renderList(analysis.weak_areas)}
+          </div>
+
+          <div className="analysis-card">
+            <h3>ATS Issues</h3>
+            {renderList(analysis.ats_issues)}
+          </div>
+
+          <div className="analysis-card">
+            <h3>Improvements</h3>
+            {renderList(analysis.improvements)}
+          </div>
+
+        </div>
+      )}
     </div>
   );
 }

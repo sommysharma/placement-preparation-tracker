@@ -16,7 +16,7 @@ function InterviewReport() {
   async function fetchReport() {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/mock-interviews/${id}/report`
+        `${import.meta.env.VITE_API_URL}/api/mock-interviews/${id}/report`
       );
 
       const data = await response.json();

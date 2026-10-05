@@ -17,12 +17,12 @@ function Dashboard() {
 
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    async function loadDashboard() {
-      try {
-        const response = await fetch(
-          `http://localhost:5000/api/dashboard/${user.id}`
-        );
+ useEffect(() => {
+  async function loadDashboard() {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/dashboard/${user.id}`
+      );
 
         const data = await response.json();
 

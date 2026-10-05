@@ -15,115 +15,116 @@ function SQL() {
 
   const [loading, setLoading] = useState(true);
 
-  const user = JSON.parse(
-    localStorage.getItem("user")
-  );
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     async function loadData() {
       try {
         const questionsResponse = await fetch(
-          "http://localhost:5000/api/sql/questions"
+          `${import.meta.env.VITE_API_URL}/api/sql/questions`
         );
 
-        const questionsData =
-          await questionsResponse.json();
+        const questionsData = await questionsResponse.json();
+
+        if (!questionsResponse.ok) {
+          throw new Error(
+            questionsData.message || "Failed to load SQL questions"
+          );
+        }
 
         setQuestions(questionsData);
 
         const progressResponse = await fetch(
-          `http://localhost:5000/api/sql/progress/${user.id}`
+          `${import.meta.env.VITE_API_URL}/api/sql/progress/${user.id}`
         );
 
-        const progressData =
-          await progressResponse.json();
+        const progressData = await progressResponse.json();
+
+        if (!progressResponse.ok) {
+          throw new Error(
+            progressData.message || "Failed to load progress"
+          );
+        }
 
         const solvedIds = new Set(
-          progressData.map(
-            (item) => item.question_id
-          )
+          progressData.map((item) => item.question_id)
         );
 
         setSolvedQuestions(solvedIds);
-        setLoading(false);
       } catch (error) {
         console.log(error);
+      } finally {
         setLoading(false);
       }
     }
 
-    loadData();
-  }, [user.id]);
+    if (user?.id) {
+      loadData();
+    } else {
+      setLoading(false);
+    }
+  }, [user?.id]);
 
   const categories = [
     "All",
     ...new Set(
-      questions.map(
-        (question) => question.category
-      )
-    )
+      questions.map((question) => question.category)
+    ),
   ];
 
-  const filteredQuestions = questions.filter(
-    (question) => {
-      const matchesSearch =
-        question.question
-          .toLowerCase()
-          .includes(search.toLowerCase());
+  const filteredQuestions = questions.filter((question) => {
+    const matchesSearch = question.question
+      .toLowerCase()
+      .includes(search.toLowerCase());
 
-      const matchesCategory =
-        category === "All" ||
-        question.category === category;
+    const matchesCategory =
+      category === "All" ||
+      question.category === category;
 
-      const matchesDifficulty =
-        difficulty === "All" ||
-        question.difficulty === difficulty;
+    const matchesDifficulty =
+      difficulty === "All" ||
+      question.difficulty === difficulty;
 
-      return (
-        matchesSearch &&
-        matchesCategory &&
-        matchesDifficulty
-      );
-    }
-  );
+    return (
+      matchesSearch &&
+      matchesCategory &&
+      matchesDifficulty
+    );
+  });
 
   const progress =
     questions.length === 0
       ? 0
       : Math.round(
-          (solvedQuestions.size /
-            questions.length) *
-            100
+          (solvedQuestions.size / questions.length) * 100
         );
 
   async function markSolved(questionId) {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/sql/progress",
+        `${import.meta.env.VITE_API_URL}/api/sql/progress`,
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             user_id: user.id,
-            question_id: questionId
-          })
+            question_id: questionId,
+          }),
         }
       );
 
       const data = await response.json();
 
       if (!response.ok) {
-        alert(data.message);
+        alert(data.message || "Failed to mark question as solved");
         return;
       }
 
       setSolvedQuestions((previous) => {
         const updated = new Set(previous);
-
         updated.add(questionId);
-
         return updated;
       });
     } catch (error) {
@@ -140,15 +141,15 @@ function SQL() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/sql/run",
+        `${import.meta.env.VITE_API_URL}/api/sql/run`,
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            query
-          })
+            query,
+          }),
         }
       );
 
@@ -157,7 +158,7 @@ function SQL() {
       if (!response.ok) {
         setQueryResult({
           type: "error",
-          message: data.message
+          message: data.message || "Query execution failed",
         });
 
         return;
@@ -165,14 +166,14 @@ function SQL() {
 
       setQueryResult({
         type: "success",
-        results: data.results
+        results: data.results || [],
       });
     } catch (error) {
       console.log(error);
 
       setQueryResult({
         type: "error",
-        message: "Server error"
+        message: "Server error",
       });
     }
   }
@@ -207,9 +208,7 @@ function SQL() {
 
   return (
     <div className="sql-page">
-
       <div className="sql-header">
-
         <div>
           <h1>SQL Practice</h1>
 
@@ -223,17 +222,13 @@ function SQL() {
           <span>{progress}%</span>
 
           <small>
-            {solvedQuestions.size} /{" "}
-            {questions.length} Solved
+            {solvedQuestions.size} / {questions.length} Solved
           </small>
         </div>
-
       </div>
 
       <div className="sql-controls">
-
         <div className="sql-search">
-
           <input
             type="text"
             placeholder="Search SQL questions..."
@@ -242,7 +237,6 @@ function SQL() {
               setSearch(event.target.value)
             }
           />
-
         </div>
 
         <select
@@ -252,10 +246,7 @@ function SQL() {
           }
         >
           {categories.map((item) => (
-            <option
-              key={item}
-              value={item}
-            >
+            <option key={item} value={item}>
               {item}
             </option>
           ))}
@@ -267,23 +258,11 @@ function SQL() {
             setDifficulty(event.target.value)
           }
         >
-          <option value="All">
-            All Difficulty
-          </option>
-
-          <option value="Easy">
-            Easy
-          </option>
-
-          <option value="Medium">
-            Medium
-          </option>
-
-          <option value="Hard">
-            Hard
-          </option>
+          <option value="All">All Difficulty</option>
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
         </select>
-
       </div>
 
       <div className="sql-count">
@@ -291,11 +270,8 @@ function SQL() {
       </div>
 
       <div className="sql-list">
-
         {filteredQuestions.map((question) => {
-
-          const solved =
-            solvedQuestions.has(question.id);
+          const solved = solvedQuestions.has(question.id);
 
           return (
             <div
@@ -304,9 +280,7 @@ function SQL() {
               }`}
               key={question.id}
             >
-
               <div className="sql-card-top">
-
                 <span className="sql-number">
                   #{question.id}
                 </span>
@@ -318,70 +292,48 @@ function SQL() {
                 <span className="sql-difficulty">
                   {question.difficulty}
                 </span>
-
               </div>
 
-              <h3>
-                {question.question}
-              </h3>
+              <h3>{question.question}</h3>
 
               <div className="sql-concept">
                 Concept: {question.concept}
               </div>
 
               {solved ? (
-
                 <button
                   className="sql-solved-button"
-                  onClick={() =>
-                    handleSolve(question)
-                  }
+                  onClick={() => handleSolve(question)}
                 >
                   ✓ Solved — Re-attempt
                 </button>
-
               ) : (
-
                 <button
                   className="sql-solve-button"
-                  onClick={() =>
-                    handleSolve(question)
-                  }
+                  onClick={() => handleSolve(question)}
                 >
                   Solve
                 </button>
-
               )}
-
             </div>
           );
         })}
-
       </div>
 
       {selectedQuestion && (
-
         <div className="sql-editor-overlay">
-
           <div className="sql-editor">
-
             <div className="sql-editor-header">
-
               <div>
-
                 <span>
                   Question #{selectedQuestion.id}
                 </span>
 
-                <h2>
-                  {selectedQuestion.question}
-                </h2>
+                <h2>{selectedQuestion.question}</h2>
 
                 <div className="sql-editor-concept">
-                  Concept:{" "}
-                  {selectedQuestion.concept}
+                  Concept: {selectedQuestion.concept}
                 </div>
-
               </div>
 
               <button
@@ -390,7 +342,6 @@ function SQL() {
               >
                 ×
               </button>
-
             </div>
 
             <textarea
@@ -403,7 +354,6 @@ function SQL() {
             />
 
             <div className="sql-editor-actions">
-
               <button
                 className="sql-run-button"
                 onClick={runQuery}
@@ -424,108 +374,66 @@ function SQL() {
               >
                 Cancel
               </button>
-
             </div>
 
             {queryResult && (
-
               <div className="sql-result">
-
                 {queryResult.type === "error" ? (
-
                   <div className="sql-error">
                     {queryResult.message}
                   </div>
-
                 ) : (
-
                   <div>
-
                     <div className="sql-success">
                       Query executed successfully
                     </div>
 
                     {queryResult.results.length > 0 ? (
-
                       <div className="sql-result-table">
-
                         <table>
-
                           <thead>
-
                             <tr>
-
                               {Object.keys(
                                 queryResult.results[0]
                               ).map((column) => (
-
                                 <th key={column}>
                                   {column}
                                 </th>
-
                               ))}
-
                             </tr>
-
                           </thead>
 
                           <tbody>
-
                             {queryResult.results.map(
                               (row, index) => (
-
                                 <tr key={index}>
-
                                   {Object.values(row).map(
-                                    (
-                                      value,
-                                      columnIndex
-                                    ) => (
-
-                                      <td
-                                        key={columnIndex}
-                                      >
+                                    (value, columnIndex) => (
+                                      <td key={columnIndex}>
                                         {String(
                                           value ?? "NULL"
                                         )}
                                       </td>
-
                                     )
                                   )}
-
                                 </tr>
-
                               )
                             )}
-
                           </tbody>
-
                         </table>
-
                       </div>
-
                     ) : (
-
                       <div className="sql-empty-result">
                         Query returned no rows.
                       </div>
-
                     )}
-
                   </div>
-
                 )}
-
               </div>
-
             )}
-
           </div>
-
         </div>
-
       )}
-
     </div>
   );
 }

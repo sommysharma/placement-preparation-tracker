@@ -42,19 +42,19 @@ function Interview() {
       setLoading(true);
       setMessage("");
 
-      const response = await fetch(
-        "http://localhost:5000/api/mock-interviews",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            user_id: user.id,
-            ...setup
-          })
-        }
-      );
+     const response = await fetch(
+  `${import.meta.env.VITE_API_URL}/api/mock-interviews`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      user_id: user.id,
+      ...setup
+    })
+  }
+);
 
       const data = await response.json();
 
@@ -68,11 +68,11 @@ function Interview() {
       setInterviewId(newInterviewId);
 
       const generateResponse = await fetch(
-        `http://localhost:5000/api/mock-interviews/${newInterviewId}/generate-questions`,
-        {
-          method: "POST"
-        }
-      );
+  `${import.meta.env.VITE_API_URL}/api/mock-interviews/${newInterviewId}/generate-questions`,
+  {
+    method: "POST"
+  }
+);
 
       const generateData = await generateResponse.json();
 
@@ -84,9 +84,9 @@ function Interview() {
         return;
       }
 
-      const questionResponse = await fetch(
-        `http://localhost:5000/api/mock-interviews/${newInterviewId}/questions`
-      );
+    const questionResponse = await fetch(
+  `${import.meta.env.VITE_API_URL}/api/mock-interviews/${newInterviewId}/questions`
+);
 
       const questionData = await questionResponse.json();
 
@@ -129,20 +129,19 @@ function Interview() {
       setMessage("");
 
       const questionId = currentQuestion.id;
-
-      const answerResponse = await fetch(
-        `http://localhost:5000/api/mock-interviews/questions/${questionId}/answer`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            answer,
-            answer_type: "text"
-          })
-        }
-      );
+const answerResponse = await fetch(
+  `${import.meta.env.VITE_API_URL}/api/mock-interviews/questions/${questionId}/answer`,
+  {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      answer,
+      answer_type: "text"
+    })
+  }
+);
 
       const answerData = await answerResponse.json();
 
@@ -154,12 +153,12 @@ function Interview() {
         return;
       }
 
-      const evaluationResponse = await fetch(
-        `http://localhost:5000/api/mock-interviews/questions/${questionId}/evaluate`,
-        {
-          method: "POST"
-        }
-      );
+     const evaluationResponse = await fetch(
+  `${import.meta.env.VITE_API_URL}/api/mock-interviews/questions/${questionId}/evaluate`,
+  {
+    method: "POST"
+  }
+);
 
       const evaluationData = await evaluationResponse.json();
 
@@ -184,7 +183,7 @@ function Interview() {
       const isCorrect = score >= 5;
 
       const saveResponse = await fetch(
-        `http://localhost:5000/api/mock-interviews/questions/${questionId}/evaluation`,
+        `${import.meta.env.VITE_API_URL}/api/mock-interviews/questions/${questionId}/evaluation`,
         {
           method: "PUT",
           headers: {
@@ -213,7 +212,7 @@ function Interview() {
         setAnswer("");
       } else {
         const completeResponse = await fetch(
-          `http://localhost:5000/api/mock-interviews/${interviewId}/complete`,
+          `${import.meta.env.VITE_API_URL}/api/mock-interviews/${interviewId}/complete`,
           {
             method: "POST"
           }

@@ -332,7 +332,7 @@ node server.js
 The backend runs on:
 
 ```text
-http://localhost:5000
+${import.meta.env.VITE_API_URL}
 ```
 
 ### 6. Start the frontend

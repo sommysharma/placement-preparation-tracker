@@ -26,14 +26,13 @@ function DSA() {
       }
 
       try {
-        const problemsResponse = await fetch(
-          "http://localhost:5000/api/dsa/problems"
-        );
+  const problemsResponse = await fetch(
+    `${import.meta.env.VITE_API_URL}/api/dsa/problems`
+  );
 
-        const progressResponse = await fetch(
-          `http://localhost:5000/api/dsa/progress/${user.id}`
-        );
-
+  const progressResponse = await fetch(
+    `${import.meta.env.VITE_API_URL}/api/dsa/progress/${user.id}`
+  );
         const problemsData =
           await problemsResponse.json();
 
@@ -75,20 +74,20 @@ function DSA() {
   }
 
   async function markSolved(problemId) {
-    try {
-      const response = await fetch(
-        "http://localhost:5000/api/dsa/progress",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            user_id: user.id,
-            problem_id: problemId
-          })
-        }
-      );
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/dsa/progress`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          user_id: user.id,
+          problem_id: problemId
+        })
+      }
+    );
 
       const data = await response.json();
 
